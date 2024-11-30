@@ -10,7 +10,7 @@ const catModelMock = {
   find: jest.fn(),
   findOne: jest.fn(),
   findByIdAndUpdate: jest.fn(),
-  findByIdAndRemove: jest.fn(),
+  findByIdAndDelete: jest.fn(),
 };
 
 describe('CatsService', () => {
@@ -136,7 +136,7 @@ describe('CatsService', () => {
         breed: 'Breed #1',
         age: 4,
       };
-      model.findByIdAndRemove.mockReturnValueOnce({
+      model.findByIdAndDelete.mockReturnValueOnce({
         exec: jest.fn().mockResolvedValueOnce(mockedCat),
       } as any);
 
@@ -144,7 +144,7 @@ describe('CatsService', () => {
       const result = await service.delete(id);
 
       expect(result).toEqual(mockedCat);
-      expect(model.findByIdAndRemove).toHaveBeenCalledWith({ _id: id });
+      expect(model.findByIdAndDelete).toHaveBeenCalledWith({ _id: id });
     });
   });
 });
